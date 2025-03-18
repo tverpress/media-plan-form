@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <!-- Адаптация для мобильных устройств -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Адаптация для мобильных устройств и Telegram Mini Apps -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="Форма для составления медиаплана мероприятий">
   <meta name="keywords" content="медиаплан, форма, мероприятия, православие">
   <title>Форма для медиаплана</title>
@@ -67,8 +67,8 @@
           <option value="Социальное направление">Социальное направление</option>
         </select>
       </div>
-      <div class="form-navigation text-end">
-        <button type="button" class="btn btn-primary next-step">Далее</button>
+      <div class="form-navigation">
+        <button type="button" class="btn btn-primary w-100 next-step">Далее</button>
       </div>
     </div>
 
@@ -83,6 +83,18 @@
           class="form-control" 
           id="eventName" 
           name="eventName" 
+          required
+        >
+      </div>
+
+      <!-- Место проведения мероприятия -->
+      <div class="mb-3">
+        <label for="eventPlace" class="form-label">Место проведения мероприятия</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="eventPlace" 
+          name="eventPlace" 
           required
         >
       </div>
@@ -111,20 +123,15 @@
         >
       </div>
 
-      <!-- Место проведения мероприятия -->
-      <div class="mb-3">
-        <label for="eventPlace" class="form-label">Место проведения мероприятия</label>
-        <input 
-          type="text" 
-          class="form-control" 
-          id="eventPlace" 
-          name="eventPlace" 
-          required
-        >
-      </div>
-      <div class="form-navigation d-flex justify-content-between">
-        <button type="button" class="btn btn-secondary prev-step">Назад</button>
-        <button type="button" class="btn btn-primary next-step">Далее</button>
+      <div class="form-navigation">
+        <div class="row g-2">
+          <div class="col">
+            <button type="button" class="btn btn-secondary w-100 prev-step">Назад</button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-primary w-100 next-step">Далее</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -211,9 +218,15 @@
           rows="3"
         ></textarea>
       </div>
-      <div class="form-navigation d-flex justify-content-between">
-        <button type="button" class="btn btn-secondary prev-step">Назад</button>
-        <button type="button" class="btn btn-primary next-step">Далее</button>
+      <div class="form-navigation">
+        <div class="row g-2">
+          <div class="col">
+            <button type="button" class="btn btn-secondary w-100 prev-step">Назад</button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-primary w-100 next-step">Далее</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -244,9 +257,15 @@
           required
         >
       </div>
-      <div class="form-navigation d-flex justify-content-between">
-        <button type="button" class="btn btn-secondary prev-step">Назад</button>
-        <button type="submit" class="btn btn-primary">Завершить</button>
+      <div class="form-navigation">
+        <div class="row g-2">
+          <div class="col">
+            <button type="button" class="btn btn-secondary w-100 prev-step">Назад</button>
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-primary w-100">Завершить</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -273,6 +292,16 @@
   const nextButtons = document.querySelectorAll('.next-step');
   const prevButtons = document.querySelectorAll('.prev-step');
   const progressBar = document.querySelector('.progress-bar');
+
+  // Функция для предотвращения изменения масштаба в Telegram Mini App
+  function preventZoom(e) {
+    if(e.touches.length > 1) {
+      e.preventDefault();
+    }
+  }
+
+  // Добавляем обработчик для предотвращения масштабирования на сенсорных устройствах
+  document.addEventListener('touchmove', preventZoom, { passive: false });
 
   // Текущий шаг формы
   let currentStep = 0;
