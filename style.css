@@ -1,0 +1,181 @@
+/* ---------- Цвета и шрифты ---------- */
+body {
+    background-color: #f1ede6;
+    color: #3a100a;
+    font-family: "Cormorant", system-ui, -apple-system, sans-serif; /* основной текст с запасными вариантами */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  
+  /* Заголовки */
+  h1, h2, h3 {
+    font-family: "Calypso", serif; /* заголовки */
+    color: #3a100a;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* ---------- Контейнер формы ---------- */
+  .form-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  /* Улучшаем поля формы */
+  .form-control:focus {
+    border-color: #e8b97f;
+    box-shadow: 0 0 0 0.25rem rgba(232, 185, 127, 0.25);
+  }
+  
+  .form-select:focus {
+    border-color: #e8b97f;
+    box-shadow: 0 0 0 0.25rem rgba(232, 185, 127, 0.25);
+  }
+  
+  /* Стили для сообщений о валидации */
+  .form-control:invalid {
+    border-color: #dc3545;
+  }
+  
+  .form-text {
+    color: #6c757d;
+    font-size: 0.85rem;
+  }
+  
+  /* ---------- Кнопки (Bootstrap .btn-primary) ---------- */
+  .btn-primary {
+    background-color: #e8b97f !important; /* акцентный цвет */
+    border-color: #e8b97f !important;
+    color: #3a100a !important;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    filter: brightness(90%);
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(1px);
+  }
+  
+  /* ---------- Оверлей после отправки ---------- */
+  .overlay {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* полупрозрачный фон */
+    display: none; /* скрыт по умолчанию */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .overlay[style*="flex"] {
+    opacity: 1;
+  }
+  
+  .overlay-content {
+    background-color: #f1ede6;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    animation: popIn 0.4s forwards;
+  }
+  
+  @keyframes popIn {
+    0% {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .overlay-content h2 {
+    font-family: "Calypso", serif;
+    color: #3a100a;
+    margin-bottom: 20px;
+  }
+  
+  .overlay-content p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+  }
+  
+  .overlay-content .btn {
+    background-color: #e8b97f;
+    border-color: #e8b97f;
+    color: #3a100a;
+    padding: 0.6rem 1.8rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+  
+  .overlay-content .btn:hover {
+    filter: brightness(90%);
+    transform: translateY(-2px);
+  }
+  
+  .overlay-content .btn:active {
+    transform: translateY(1px);
+  }
+  
+  /* Улучшенные стили для статусных сообщений */
+  #statusMessage {
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  /* ---------- Адаптация под маленькие экраны ---------- */
+  @media (max-width: 576px) {
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-container {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+    
+    .overlay-content {
+      padding: 25px;
+      margin: 0 15px;
+    }
+    
+    .btn-primary {
+      width: 100%;
+    }
+    
+    /* Увеличиваем размер полей ввода для мобильных устройств */
+    .form-control, .form-select {
+      padding: 0.6rem;
+      font-size: 1rem;
+    }
+    
+    /* Увеличиваем высоту textarea */
+    textarea.form-control {
+      min-height: 120px;
+    }
+  }

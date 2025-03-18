@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <!-- Адаптация для мобильных устройств -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Форма для составления медиаплана мероприятий">
+  <meta name="keywords" content="медиаплан, форма, мероприятия, православие">
+  <title>Форма для медиаплана</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+
+  <!-- Подключаем Bootstrap 5 (через CDN) -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  >
+  
+  <!-- Подключаем наши стили -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Оверлей для уведомления об успешной отправке -->
+<div id="successOverlay" class="overlay">
+  <div class="overlay-content">
+    <h2>Форма успешно отправлена!</h2>
+    <p>Спасибо за вашу информацию. Хотите заполнить ещё?</p>
+    <button type="button" class="btn" id="fillAgainBtn">Заполнить ещё</button>
+  </div>
+</div>
+
+<!-- Контейнер формы -->
+<div class="container form-container">
+  <h1 class="my-4">Форма для составления медиаплана</h1>
+
+  <form id="eventForm">
+    <!-- Департамент -->
+    <div class="mb-3">
+      <label for="department" class="form-label">Департамент</label>
+      <select 
+        class="form-select" 
+        id="department" 
+        name="department" 
+        required
+      >
+        <option value="">-- Выберите департамент --</option>
+        <option value="Воскресная школа">Воскресная школа</option>
+        <option value="Курсы по основам православия">Курсы по основам православия</option>
+        <option value="Молодежный клуб">Молодежный клуб</option>
+        <option value="отряд скаутов">отряд скаутов</option>
+        <option value="театральный кружок">театральный кружок</option>
+        <option value="Ответственный за церковную лавку">Ответственный за церковную лавку</option>
+        <option value="Хозяйственная деятельность">Хозяйственная деятельность</option>
+        <option value="Питание">Питание</option>
+        <option value="Пономарское служение">Пономарское служение</option>
+        <option value="Архиерейский хор">Архиерейский хор</option>
+        <option value="Социальное направление">Социальное направление</option>
+      </select>
+    </div>
+
+    <!-- Название мероприятия -->
+    <div class="mb-3">
+      <label for="eventName" class="form-label">Название мероприятия</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="eventName" 
+        name="eventName" 
+        required
+      >
+    </div>
+
+    <!-- День проведения мероприятия -->
+    <div class="mb-3">
+      <label for="eventDay" class="form-label">День проведения мероприятия</label>
+      <input 
+        type="date" 
+        class="form-control" 
+        id="eventDay" 
+        name="eventDay" 
+        required
+      >
+    </div>
+
+    <!-- Время проведения мероприятия -->
+    <div class="mb-3">
+      <label for="eventTime" class="form-label">Время проведения</label>
+      <input 
+        type="time" 
+        class="form-control" 
+        id="eventTime" 
+        name="eventTime" 
+        required
+      >
+    </div>
+
+    <!-- Место проведения мероприятия -->
+    <div class="mb-3">
+      <label for="eventPlace" class="form-label">Место проведения мероприятия</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="eventPlace" 
+        name="eventPlace" 
+        required
+      >
+    </div>
+
+    <!-- Нужен ли фотограф? (radio group) -->
+    <div class="mb-3">
+      <label class="form-label d-block">Нужен ли фотограф?</label>
+      <div class="form-check">
+        <input 
+          class="form-check-input" 
+          type="radio" 
+          name="photographer" 
+          id="photographer_yes" 
+          value="Да" 
+          required
+        >
+        <label class="form-check-label" for="photographer_yes">Да</label>
+      </div>
+      <div class="form-check">
+        <input 
+          class="form-check-input" 
+          type="radio" 
+          name="photographer" 
+          id="photographer_own" 
+          value="Нет. Мы сами сделаем фотографии и пришлем их вам"
+        >
+        <label class="form-check-label" for="photographer_own">
+          Нет. Мы сами сделаем фотографии и пришлем их вам
+        </label>
+      </div>
+      <div class="form-check">
+        <input 
+          class="form-check-input" 
+          type="radio" 
+          name="photographer" 
+          id="photographer_no" 
+          value="Нет. На этом мероприятии не надо делать фотографии"
+        >
+        <label class="form-check-label" for="photographer_no">
+          Нет. На этом мероприятии не надо делать фотографии
+        </label>
+      </div>
+    </div>
+
+    <!-- Нужен ли корреспондент? (radio group) -->
+    <div class="mb-3">
+      <label class="form-label d-block">Нужен ли корреспондент?</label>
+      <div class="form-check">
+        <input 
+          class="form-check-input" 
+          type="radio" 
+          name="correspondent" 
+          id="correspondent_yes" 
+          value="Да" 
+          required
+        >
+        <label class="form-check-label" for="correspondent_yes">
+          Да
+        </label>
+      </div>
+      <div class="form-check">
+        <input 
+          class="form-check-input" 
+          type="radio" 
+          name="correspondent" 
+          id="correspondent_no" 
+          value="Нет, мы сами напишем об этом и пришлем вам"
+        >
+        <label class="form-check-label" for="correspondent_no">
+          Нет, мы сами напишем об этом и пришлем вам
+        </label>
+      </div>
+    </div>
+
+    <!-- Дополнительная информация -->
+    <div class="mb-3">
+      <label for="additionalInfo" class="form-label">Дополнительная информация</label>
+      <textarea 
+        class="form-control" 
+        id="additionalInfo" 
+        name="additionalInfo" 
+        rows="3"
+      ></textarea>
+    </div>
+
+    <!-- Контактное лицо (ФИО) -->
+    <div class="mb-3">
+      <label for="contactName" class="form-label">Контактное лицо (ФИО)</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="contactName" 
+        name="contactName" 
+        required
+      >
+    </div>
+
+    <!-- Номер телефона для связи -->
+    <div class="mb-3">
+      <label for="contactPhone" class="form-label">Номер телефона для связи</label>
+      <input 
+        type="tel" 
+        class="form-control" 
+        id="contactPhone" 
+        name="contactPhone" 
+        pattern="^(\+7|8)?[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$"
+        placeholder="+7 (XXX) XXX-XX-XX"
+        required
+      >
+      <div class="form-text">Формат: +7 (XXX) XXX-XX-XX или 8XXXXXXXXXX</div>
+    </div>
+
+    <!-- Кнопка отправки -->
+    <button type="submit" class="btn btn-primary">Отправить</button>
+  </form>
+
+  <!-- Сообщение о статусе отправки -->
+  <div class="mt-3" id="statusMessage"></div>
+</div>
+
+<!-- Подключаем Bootstrap JS (опционально, если нужен для функционала) -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<script>
+  // ВАША ссылка на веб-приложение Google Apps Script
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzOjcghIjYf6Be6bMJzxXlw1loE7Z6vKBD54au000CVJkMf3paPPak6xIY9RFHxOONGww/exec';
+
+  // Получаем элементы
+  const form = document.getElementById('eventForm');
+  const statusMessage = document.getElementById('statusMessage');
+  const successOverlay = document.getElementById('successOverlay');
+  const fillAgainBtn = document.getElementById('fillAgainBtn');
+
+  // ======== Работа с куки (department, contactName, contactPhone) ========
+  function setCookie(name, value, days) {
+    try {
+      const d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + d.toUTCString();
+      document.cookie = name + "=" + encodeURIComponent(value || "") + ";" + expires + ";path=/";
+    } catch (error) {
+      console.error('Ошибка при сохранении куки:', error);
+    }
+  }
+
+  function getCookie(name) {
+    try {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
+        if (c.indexOf(nameEQ) === 0) {
+          return decodeURIComponent(c.substring(nameEQ.length, c.length));
+        }
+      }
+    } catch (error) {
+      console.error('Ошибка при получении куки:', error);
+    }
+    return null;
+  }
+
+  // При загрузке страницы - подтягиваем данные из куки
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedDepartment = getCookie('department');
+    if (savedDepartment) {
+      document.getElementById('department').value = savedDepartment;
+    }
+    const savedContactName = getCookie('contactName');
+    if (savedContactName) {
+      document.getElementById('contactName').value = savedContactName;
+    }
+    const savedContactPhone = getCookie('contactPhone');
+    if (savedContactPhone) {
+      document.getElementById('contactPhone').value = savedContactPhone;
+    }
+  });
+
+  // При отправке формы
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    
+    // Проверка валидности формы перед отправкой
+    if (!form.checkValidity()) {
+      e.stopPropagation();
+      form.classList.add('was-validated');
+      statusMessage.textContent = 'Пожалуйста, заполните все обязательные поля';
+      statusMessage.className = 'mt-3 text-danger';
+      return;
+    }
+    
+    statusMessage.textContent = 'Отправляем данные...';
+    statusMessage.className = 'mt-3 text-info';
+
+    // Сохраняем куки
+    const departmentValue  = document.getElementById('department').value;
+    const contactNameValue = document.getElementById('contactName').value;
+    const contactPhoneValue = document.getElementById('contactPhone').value;
+    setCookie('department', departmentValue, 365);
+    setCookie('contactName', contactNameValue, 365);
+    setCookie('contactPhone', contactPhoneValue, 365);
+
+    // Собираем данные из формы
+    const formData = new FormData(form);
+
+    // Отправляем POST-запрос на Apps Script
+    fetch(scriptURL, { method: 'POST', body: formData })
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.text();
+      })
+      .then(result => {
+        // Убираем текстовое сообщение
+        statusMessage.textContent = '';
+        // Показываем оверлей
+        successOverlay.style.display = 'flex';
+        // Сбросить валидацию
+        form.classList.remove('was-validated');
+      })
+      .catch(error => {
+        statusMessage.textContent = 'Ошибка при отправке: ' + error;
+        statusMessage.className = 'mt-3 text-danger';
+        console.error('Ошибка:', error);
+      });
+  });
+
+  // Обработка клика «Заполнить ещё»
+  fillAgainBtn.addEventListener('click', () => {
+    // Скрываем оверлей
+    successOverlay.style.display = 'none';
+    // Сбрасываем форму, кроме значений из куки
+    form.reset();
+    
+    // Восстанавливаем значения из куки
+    const savedDepartment = getCookie('department');
+    if (savedDepartment) {
+      document.getElementById('department').value = savedDepartment;
+    }
+    const savedContactName = getCookie('contactName');
+    if (savedContactName) {
+      document.getElementById('contactName').value = savedContactName;
+    }
+    const savedContactPhone = getCookie('contactPhone');
+    if (savedContactPhone) {
+      document.getElementById('contactPhone').value = savedContactPhone;
+    }
+  });
+</script>
+
+</body>
+</html>
