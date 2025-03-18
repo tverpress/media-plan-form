@@ -34,194 +34,225 @@
 <!-- Контейнер формы -->
 <div class="container form-container">
   <h1 class="my-4">Форма для составления медиаплана</h1>
+  
+  <!-- Индикатор прогресса -->
+  <div class="progress mb-4">
+    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
 
   <form id="eventForm">
-    <!-- Департамент -->
-    <div class="mb-3">
-      <label for="department" class="form-label">Департамент</label>
-      <select 
-        class="form-select" 
-        id="department" 
-        name="department" 
-        required
-      >
-        <option value="">-- Выберите департамент --</option>
-        <option value="Воскресная школа">Воскресная школа</option>
-        <option value="Курсы по основам православия">Курсы по основам православия</option>
-        <option value="Молодежный клуб">Молодежный клуб</option>
-        <option value="отряд скаутов">отряд скаутов</option>
-        <option value="театральный кружок">театральный кружок</option>
-        <option value="Ответственный за церковную лавку">Ответственный за церковную лавку</option>
-        <option value="Хозяйственная деятельность">Хозяйственная деятельность</option>
-        <option value="Питание">Питание</option>
-        <option value="Пономарское служение">Пономарское служение</option>
-        <option value="Архиерейский хор">Архиерейский хор</option>
-        <option value="Социальное направление">Социальное направление</option>
-      </select>
-    </div>
-
-    <!-- Название мероприятия -->
-    <div class="mb-3">
-      <label for="eventName" class="form-label">Название мероприятия</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        id="eventName" 
-        name="eventName" 
-        required
-      >
-    </div>
-
-    <!-- День проведения мероприятия -->
-    <div class="mb-3">
-      <label for="eventDay" class="form-label">День проведения мероприятия</label>
-      <input 
-        type="date" 
-        class="form-control" 
-        id="eventDay" 
-        name="eventDay" 
-        required
-      >
-    </div>
-
-    <!-- Время проведения мероприятия -->
-    <div class="mb-3">
-      <label for="eventTime" class="form-label">Время проведения</label>
-      <input 
-        type="time" 
-        class="form-control" 
-        id="eventTime" 
-        name="eventTime" 
-        required
-      >
-    </div>
-
-    <!-- Место проведения мероприятия -->
-    <div class="mb-3">
-      <label for="eventPlace" class="form-label">Место проведения мероприятия</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        id="eventPlace" 
-        name="eventPlace" 
-        required
-      >
-    </div>
-
-    <!-- Нужен ли фотограф? (radio group) -->
-    <div class="mb-3">
-      <label class="form-label d-block">Нужен ли фотограф?</label>
-      <div class="form-check">
-        <input 
-          class="form-check-input" 
-          type="radio" 
-          name="photographer" 
-          id="photographer_yes" 
-          value="Да" 
+    <!-- Шаг 1: Департамент -->
+    <div class="form-step" id="step1">
+      <h3>Выберите департамент</h3>
+      <!-- Департамент -->
+      <div class="mb-3">
+        <label for="department" class="form-label">Департамент</label>
+        <select 
+          class="form-select" 
+          id="department" 
+          name="department" 
           required
         >
-        <label class="form-check-label" for="photographer_yes">Да</label>
+          <option value="">-- Выберите департамент --</option>
+          <option value="Воскресная школа">Воскресная школа</option>
+          <option value="Курсы по основам православия">Курсы по основам православия</option>
+          <option value="Молодежный клуб">Молодежный клуб</option>
+          <option value="отряд скаутов">отряд скаутов</option>
+          <option value="театральный кружок">театральный кружок</option>
+          <option value="Ответственный за церковную лавку">Ответственный за церковную лавку</option>
+          <option value="Хозяйственная деятельность">Хозяйственная деятельность</option>
+          <option value="Питание">Питание</option>
+          <option value="Пономарское служение">Пономарское служение</option>
+          <option value="Архиерейский хор">Архиерейский хор</option>
+          <option value="Социальное направление">Социальное направление</option>
+        </select>
       </div>
-      <div class="form-check">
-        <input 
-          class="form-check-input" 
-          type="radio" 
-          name="photographer" 
-          id="photographer_own" 
-          value="Нет. Мы сами сделаем фотографии и пришлем их вам"
-        >
-        <label class="form-check-label" for="photographer_own">
-          Нет. Мы сами сделаем фотографии и пришлем их вам
-        </label>
-      </div>
-      <div class="form-check">
-        <input 
-          class="form-check-input" 
-          type="radio" 
-          name="photographer" 
-          id="photographer_no" 
-          value="Нет. На этом мероприятии не надо делать фотографии"
-        >
-        <label class="form-check-label" for="photographer_no">
-          Нет. На этом мероприятии не надо делать фотографии
-        </label>
+      <div class="form-navigation text-end">
+        <button type="button" class="btn btn-primary next-step">Далее</button>
       </div>
     </div>
 
-    <!-- Нужен ли корреспондент? (radio group) -->
-    <div class="mb-3">
-      <label class="form-label d-block">Нужен ли корреспондент?</label>
-      <div class="form-check">
+    <!-- Шаг 2: Информация о мероприятии -->
+    <div class="form-step" id="step2" style="display: none;">
+      <h3>Информация о мероприятии</h3>
+      <!-- Название мероприятия -->
+      <div class="mb-3">
+        <label for="eventName" class="form-label">Название мероприятия</label>
         <input 
-          class="form-check-input" 
-          type="radio" 
-          name="correspondent" 
-          id="correspondent_yes" 
-          value="Да" 
+          type="text" 
+          class="form-control" 
+          id="eventName" 
+          name="eventName" 
           required
         >
-        <label class="form-check-label" for="correspondent_yes">
-          Да
-        </label>
       </div>
-      <div class="form-check">
+
+      <!-- День проведения мероприятия -->
+      <div class="mb-3">
+        <label for="eventDay" class="form-label">День проведения мероприятия</label>
         <input 
-          class="form-check-input" 
-          type="radio" 
-          name="correspondent" 
-          id="correspondent_no" 
-          value="Нет, мы сами напишем об этом и пришлем вам"
+          type="date" 
+          class="form-control" 
+          id="eventDay" 
+          name="eventDay" 
+          required
         >
-        <label class="form-check-label" for="correspondent_no">
-          Нет, мы сами напишем об этом и пришлем вам
-        </label>
+      </div>
+
+      <!-- Время проведения мероприятия -->
+      <div class="mb-3">
+        <label for="eventTime" class="form-label">Время проведения</label>
+        <input 
+          type="time" 
+          class="form-control" 
+          id="eventTime" 
+          name="eventTime" 
+          required
+        >
+      </div>
+
+      <!-- Место проведения мероприятия -->
+      <div class="mb-3">
+        <label for="eventPlace" class="form-label">Место проведения мероприятия</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="eventPlace" 
+          name="eventPlace" 
+          required
+        >
+      </div>
+      <div class="form-navigation d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary prev-step">Назад</button>
+        <button type="button" class="btn btn-primary next-step">Далее</button>
       </div>
     </div>
 
-    <!-- Дополнительная информация -->
-    <div class="mb-3">
-      <label for="additionalInfo" class="form-label">Дополнительная информация</label>
-      <textarea 
-        class="form-control" 
-        id="additionalInfo" 
-        name="additionalInfo" 
-        rows="3"
-      ></textarea>
+    <!-- Шаг 3: Медиа-сопровождение -->
+    <div class="form-step" id="step3" style="display: none;">
+      <h3>Медиа-сопровождение</h3>
+      <!-- Нужен ли фотограф? (radio group) -->
+      <div class="mb-3">
+        <label class="form-label d-block">Нужен ли фотограф?</label>
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="photographer" 
+            id="photographer_yes" 
+            value="Да" 
+            required
+          >
+          <label class="form-check-label" for="photographer_yes">Да</label>
+        </div>
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="photographer" 
+            id="photographer_own" 
+            value="Нет. Мы сами сделаем фотографии и пришлем их вам"
+          >
+          <label class="form-check-label" for="photographer_own">
+            Нет. Мы сами сделаем фотографии и пришлем их вам
+          </label>
+        </div>
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="photographer" 
+            id="photographer_no" 
+            value="Нет. На этом мероприятии не надо делать фотографии"
+          >
+          <label class="form-check-label" for="photographer_no">
+            Нет. На этом мероприятии не надо делать фотографии
+          </label>
+        </div>
+      </div>
+
+      <!-- Нужен ли корреспондент? (radio group) -->
+      <div class="mb-3">
+        <label class="form-label d-block">Нужен ли корреспондент?</label>
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="correspondent" 
+            id="correspondent_yes" 
+            value="Да" 
+            required
+          >
+          <label class="form-check-label" for="correspondent_yes">
+            Да
+          </label>
+        </div>
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="correspondent" 
+            id="correspondent_no" 
+            value="Нет, мы сами напишем об этом и пришлем вам"
+          >
+          <label class="form-check-label" for="correspondent_no">
+            Нет, мы сами напишем об этом и пришлем вам
+          </label>
+        </div>
+      </div>
+
+      <!-- Дополнительная информация -->
+      <div class="mb-3">
+        <label for="additionalInfo" class="form-label">Дополнительная информация</label>
+        <textarea 
+          class="form-control" 
+          id="additionalInfo" 
+          name="additionalInfo" 
+          rows="3"
+        ></textarea>
+      </div>
+      <div class="form-navigation d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary prev-step">Назад</button>
+        <button type="button" class="btn btn-primary next-step">Далее</button>
+      </div>
     </div>
 
-    <!-- Контактное лицо (ФИО) -->
-    <div class="mb-3">
-      <label for="contactName" class="form-label">Контактное лицо (ФИО)</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        id="contactName" 
-        name="contactName" 
-        required
-      >
+    <!-- Шаг 4: Контактная информация -->
+    <div class="form-step" id="step4" style="display: none;">
+      <h3>Контактная информация</h3>
+      <!-- Контактное лицо (ФИО) -->
+      <div class="mb-3">
+        <label for="contactName" class="form-label">Контактное лицо (ФИО)</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="contactName" 
+          name="contactName" 
+          required
+        >
+      </div>
+
+      <!-- Номер телефона для связи -->
+      <div class="mb-3">
+        <label for="contactPhone" class="form-label">Номер телефона для связи</label>
+        <input 
+          type="tel" 
+          class="form-control" 
+          id="contactPhone" 
+          name="contactPhone" 
+          placeholder="+7 (XXX) XXX-XX-XX"
+          required
+        >
+      </div>
+      <div class="form-navigation d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary prev-step">Назад</button>
+        <button type="submit" class="btn btn-primary">Завершить</button>
+      </div>
     </div>
 
-    <!-- Номер телефона для связи -->
-    <div class="mb-3">
-      <label for="contactPhone" class="form-label">Номер телефона для связи</label>
-      <input 
-        type="tel" 
-        class="form-control" 
-        id="contactPhone" 
-        name="contactPhone" 
-        pattern="^(\+7|8)?[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$"
-        placeholder="+7 (XXX) XXX-XX-XX"
-        required
-      >
-      <div class="form-text">Формат: +7 (XXX) XXX-XX-XX или 8XXXXXXXXXX</div>
-    </div>
-
-    <!-- Кнопка отправки -->
-    <button type="submit" class="btn btn-primary">Отправить</button>
+    <!-- Сообщение о статусе отправки -->
+    <div class="mt-3" id="statusMessage"></div>
   </form>
-
-  <!-- Сообщение о статусе отправки -->
-  <div class="mt-3" id="statusMessage"></div>
 </div>
 
 <!-- Подключаем Bootstrap JS (опционально, если нужен для функционала) -->
@@ -238,6 +269,54 @@
   const statusMessage = document.getElementById('statusMessage');
   const successOverlay = document.getElementById('successOverlay');
   const fillAgainBtn = document.getElementById('fillAgainBtn');
+  const formSteps = document.querySelectorAll('.form-step');
+  const nextButtons = document.querySelectorAll('.next-step');
+  const prevButtons = document.querySelectorAll('.prev-step');
+  const progressBar = document.querySelector('.progress-bar');
+
+  // Текущий шаг формы
+  let currentStep = 0;
+
+  // Функция для отображения текущего шага
+  function showStep(stepIndex) {
+    formSteps.forEach((step, index) => {
+      step.style.display = index === stepIndex ? 'block' : 'none';
+    });
+    
+    // Обновляем прогресс-бар
+    const progress = ((stepIndex + 1) / formSteps.length) * 100;
+    progressBar.style.width = progress + '%';
+    progressBar.setAttribute('aria-valuenow', progress);
+  }
+
+  // Обработка кнопок "Далее"
+  nextButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Проверка валидности полей текущего шага
+      const inputs = formSteps[currentStep].querySelectorAll('input[required], select[required], textarea[required]');
+      let isValid = true;
+      
+      inputs.forEach(input => {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          isValid = false;
+        }
+      });
+      
+      if (isValid) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    });
+  });
+
+  // Обработка кнопок "Назад"
+  prevButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      currentStep--;
+      showStep(currentStep);
+    });
+  });
 
   // ======== Работа с куки (department, contactName, contactPhone) ========
   function setCookie(name, value, days) {
@@ -281,6 +360,9 @@
     if (savedContactPhone) {
       document.getElementById('contactPhone').value = savedContactPhone;
     }
+    
+    // Показываем первый шаг
+    showStep(currentStep);
   });
 
   // При отправке формы
@@ -351,6 +433,10 @@
     if (savedContactPhone) {
       document.getElementById('contactPhone').value = savedContactPhone;
     }
+    
+    // Возвращаемся к первому шагу
+    currentStep = 0;
+    showStep(currentStep);
   });
 </script>
 
